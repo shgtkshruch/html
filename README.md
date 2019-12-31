@@ -1,6 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f9dca154-03e3-4b36-a98d-8db73207a5c2/deploy-status)](https://app.netlify.com/sites/html-shgtkshruch/deploys)
+
 # HTML
 
-Interactive HTML referrence.
+Interactive HTML reference.
 
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
