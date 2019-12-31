@@ -6,7 +6,7 @@ public_folder: assets
 collections:
   - name: element
     label: Element
-    folder: element
+    folder: src/pages/element
     create: true
     fields:
       - { name: title, label: Title }
