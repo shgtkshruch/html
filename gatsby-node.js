@@ -11,6 +11,7 @@ exports.createPages = async ({ actions, graphql }) => {
             id
             frontmatter {
               title
+              contentCategories
             }
           }
         }

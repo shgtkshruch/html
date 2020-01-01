@@ -11,6 +11,12 @@ export default function ({ data }) {
     <Layout title={ frontmatter.title }>
       <SEO title={ frontmatter.title } />
       <div className="blog-post">
+        <h2>Content Categories</h2>
+        <ul>
+          {frontmatter.contentCategories.map(category => {
+            return (<li>{category}</li>)
+          })}
+        </ul>
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
@@ -26,6 +32,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        contentCategories
       }
     }
   }

@@ -1,5 +1,6 @@
 ---
 title: body
+contentCategories: [sectioningRoot]
 ---
 # Body
 

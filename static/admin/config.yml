@@ -9,5 +9,47 @@ collections:
     folder: src/pages/element
     create: true
     fields:
-      - { name: title, label: Title }
-      - { name: body, label: Body, widget: markdown }
+      - name: title
+        label: Title
+      - name: contentCategories
+        label: Content Categories
+        widget: select
+        multiple: true
+        options:
+          - label: Metadata content
+            value: metadataContent
+          - label: Flow content
+            value: flowContent
+          - label: Sectioning content
+            value: sectioningContent
+          - label: Heading content
+            value: headingContent
+          - label: Phrasing content
+            value: phrasingContent
+          - label: Embedded content
+            value: embeddedContent
+          - label: Interactive content
+            value: interactiveContent
+          - label: Sectioning root
+            value: sectiongRoot
+          - label: Form-associated content
+            value: formAssociatedContent
+          - label: Listed Element
+            value: listedElement
+          - label: Submittable Element
+            value: submittableElement
+          - label: Resettable Element
+            value: resettableElement
+          - label: Autocapitalize-inheriting element
+            value: autocapitalizeInheritingElement
+          - label: Labelable element
+            value: labelableElement
+          - label: Palpable content
+            value: palpableContent
+          - label: Script-supporting element
+            value: scriptSupportingElement
+          - label: None
+            value: none
+      - name: body
+        label: Body
+        widget: markdown
