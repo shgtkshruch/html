@@ -1,7 +1,7 @@
 ---
 title: html
 order: 1
-contentCategories: [none]
+contentCategories: [None]
 ---
 # HTML
 

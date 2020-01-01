@@ -1,7 +1,7 @@
 ---
 title: body
 order: 2
-contentCategories: [sectioningRoot]
+contentCategories: [Sectioning root]
 ---
 # Body
 
