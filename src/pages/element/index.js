@@ -16,7 +16,7 @@ class ElementList extends React.Component {
           {posts.map(({ node:post }, i) => {
             return (
               <li key={i}>
-                <Link to={`element/${post.frontmatter.title}`}>
+                <Link to={`/element/${post.frontmatter.title}/`}>
                   {post.frontmatter.title}
                 </Link>
                 {post.frontmatter.contentCategories.map((category, j) => {
