@@ -12,6 +12,11 @@ collections:
     fields:
       - name: title
         label: Title
+      - name: order
+        label: Order
+        widget: number
+        valueType: int
+        step: 1
       - name: contentCategories
         label: Content Categories
         widget: select

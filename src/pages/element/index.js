@@ -38,11 +38,12 @@ export default () => (
   <StaticQuery
     query={graphql`
       {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}) {
           edges {
             node {
               frontmatter {
                 title
+                order
                 contentCategories
               }
             }
