@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  # name: git-gateway
+  name: test-repo
   branch: master
 media_folder: static/assets
 public_folder: assets
@@ -31,7 +32,7 @@ collections:
           - label: Interactive content
             value: interactiveContent
           - label: Sectioning root
-            value: sectiongRoot
+            value: sectioningRoot
           - label: Form-associated content
             value: formAssociatedContent
           - label: Listed Element
