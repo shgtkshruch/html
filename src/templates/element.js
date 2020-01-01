@@ -13,8 +13,8 @@ export default function ({ data }) {
       <div className="blog-post">
         <h2>Content Categories</h2>
         <ul>
-          {frontmatter.contentCategories.map(category => {
-            return (<li>{category}</li>)
+          {frontmatter.contentCategories.map((category, i) => {
+            return (<li key={i}>{category}</li>)
           })}
         </ul>
         <div

@@ -13,15 +13,15 @@ class ElementList extends React.Component {
       <Layout title="Element index">
         <SEO title="Element index" />
         <ul>
-          {posts.map(({ node:post }) => {
+          {posts.map(({ node:post }, i) => {
             return (
-              <li>
+              <li key={i}>
                 <Link to={`element/${post.frontmatter.title}`}>
                   {post.frontmatter.title}
                 </Link>
-                {post.frontmatter.contentCategories.map(category => {
+                {post.frontmatter.contentCategories.map((category, j) => {
                   return (
-                    <span style={{ paddingLeft: `10px` }}>[{category}]</span>
+                    <span key={j} style={{ paddingLeft: `10px` }}>[{category}]</span>
                   )
                 })}
               </li>
@@ -32,7 +32,6 @@ class ElementList extends React.Component {
     )
   }
 }
-
 
 export default () => (
   <StaticQuery
