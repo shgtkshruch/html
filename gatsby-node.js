@@ -22,6 +22,11 @@ exports.createPages = async ({ actions, graphql }) => {
     console.error(result.errors)
   }
 
+  createPage({
+    path: path.join('element/index'),
+    component: path.resolve(__dirname,"./src/pages/element/index.js")
+  })
+
   result.data.allMarkdownRemark.edges.forEach(({ node }) => {
     createPage({
       path: path.join('element', node.frontmatter.title),
