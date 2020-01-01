@@ -19,6 +19,11 @@ class ElementList extends React.Component {
                 <Link to={`element/${post.frontmatter.title}`}>
                   {post.frontmatter.title}
                 </Link>
+                {post.frontmatter.contentCategories.map(category => {
+                  return (
+                    <span style={{ paddingLeft: `10px` }}>[{category}]</span>
+                  )
+                })}
               </li>
             )
           })}
@@ -38,6 +43,7 @@ export default () => (
             node {
               frontmatter {
                 title
+                contentCategories
               }
             }
           }
