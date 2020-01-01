@@ -11,45 +11,50 @@ collections:
     fields:
       - name: title
         label: Title
+      - name: order
+        label: Order
+        widget: number
+        valueType: int
+        step: 1
       - name: contentCategories
         label: Content Categories
         widget: select
         multiple: true
         options:
           - label: Metadata content
-            value: metadataContent
+            value: Metadata content
           - label: Flow content
-            value: flowContent
+            value: Flow content
           - label: Sectioning content
-            value: sectioningContent
+            value: Sectioning content
           - label: Heading content
-            value: headingContent
+            value: Heading content
           - label: Phrasing content
-            value: phrasingContent
+            value: Phrasing content
           - label: Embedded content
-            value: embeddedContent
+            value: Embedded content
           - label: Interactive content
-            value: interactiveContent
+            value: Interactive content
           - label: Sectioning root
-            value: sectiongRoot
+            value: Sectioning root
           - label: Form-associated content
-            value: formAssociatedContent
-          - label: Listed Element
-            value: listedElement
+            value: Form-associated content
+          - label: Listed element
+            value: Listed element
           - label: Submittable Element
-            value: submittableElement
-          - label: Resettable Element
-            value: resettableElement
+            value: Submittable element
+          - label: Resettable element
+            value: Resettable element
           - label: Autocapitalize-inheriting element
-            value: autocapitalizeInheritingElement
+            value: Autocapitalize-inheriting element
           - label: Labelable element
-            value: labelableElement
+            value: Labelable element
           - label: Palpable content
-            value: palpableContent
+            value: Palpable content
           - label: Script-supporting element
-            value: scriptSupportingElement
+            value: Script-supporting element
           - label: None
-            value: none
+            value: None
       - name: body
         label: Body
         widget: markdown
