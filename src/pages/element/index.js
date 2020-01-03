@@ -4,12 +4,6 @@ import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
-const contentCategories = [
-  'Metadata content',
-  'Flow content',
-  'Sectioning content'
-]
-
 class ElementList extends React.Component {
   constructor() {
     super()
@@ -19,7 +13,6 @@ class ElementList extends React.Component {
   }
 
   clickCategory(category) {
-    console.log(category);
     this.setState(state => ({
       selectedCategories: [category]
     }))
@@ -28,6 +21,10 @@ class ElementList extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
+
+    const _fields = data.allAdminYaml.edges[0].node.collections[0].fields
+    const _contentCategoryOptions = _fields.filter(field => field.name === 'contentCategories')[0]
+    const contentCategories = _contentCategoryOptions.options.map(option => option.label)
 
     return (
       <Layout title="Element index">
@@ -69,21 +66,36 @@ class ElementList extends React.Component {
 export default () => (
   <StaticQuery
     query={graphql`
-      {
-        allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}) {
-          edges {
-            node {
-              frontmatter {
-                title
-                order
-                contentCategories
+     {
+      allAdminYaml {
+        edges {
+          node {
+            collections {
+              fields {
+                options {
+                  label
+                }
+                name
+                label
               }
             }
           }
         }
       }
-    `}
-    render={data => <ElementList data={data} />}
+      allMarkdownRemark(sort: {fields: frontmatter___order, order: ASC}) {
+        edges {
+          node {
+            frontmatter {
+              contentCategories
+              order
+              title
+            }
+          }
+        }
+      }
+    }
+  `}
+  render={data => <ElementList data={data} />}
   />
 )
 
