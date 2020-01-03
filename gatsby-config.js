@@ -35,6 +35,14 @@ module.exports = {
         path: `${__dirname}/src/pages/element`,
       },
     },
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `netlifyCMSConfig`,
+        path: `${__dirname}/static/admin`,
+      },
+    },
     `gatsby-transformer-remark`
   ],
 }
