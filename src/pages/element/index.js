@@ -4,7 +4,27 @@ import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
+const contentCategories = [
+  'Metadata content',
+  'Flow content',
+  'Sectioning content'
+]
+
 class ElementList extends React.Component {
+  constructor() {
+    super()
+    this.state = { selectedCategories: [] }
+
+    this.clickCategory = this.clickCategory.bind(this);
+  }
+
+  clickCategory(category) {
+    console.log(category);
+    this.setState(state => ({
+      selectedCategories: [category]
+    }))
+  }
+
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
@@ -12,8 +32,21 @@ class ElementList extends React.Component {
     return (
       <Layout title="Element index">
         <SEO title="Element index" />
+
+        <ul>
+          {contentCategories.map((category, i) => {
+            return (
+              <li key={i}>
+                <button onClick={(e) => this.clickCategory(category)}>{category}</button>
+              </li>
+            )
+          })}
+        </ul>
+
         <ul>
           {posts.map(({ node:post }, i) => {
+            if (!post.frontmatter.contentCategories.includes(this.state.selectedCategories[0])) return
+
             return (
               <li key={i}>
                 <Link to={`/element/${post.frontmatter.title}/`}>
