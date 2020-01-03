@@ -13,9 +13,19 @@ class ElementList extends React.Component {
   }
 
   clickCategory(category) {
-    this.setState(state => ({
-      selectedCategories: [category]
-    }))
+    let selectedCategories = []
+
+    if (this.state.selectedCategories.indexOf(category)) {
+      selectedCategories = [...this.state.selectedCategories, category]
+    } else {
+      selectedCategories = this.state.selectedCategories.filter(cat => cat !== category)
+    }
+
+    this.setState(state => {
+      return {
+        selectedCategories
+      }
+    })
   }
 
   render() {
@@ -42,7 +52,7 @@ class ElementList extends React.Component {
 
         <ul>
           {posts.map(({ node:post }, i) => {
-            if (!post.frontmatter.contentCategories.includes(this.state.selectedCategories[0])) return
+            if (post.frontmatter.contentCategories.filter(cat => this.state.selectedCategories.includes(cat)).length !== this.state.selectedCategories.length) return
 
             return (
               <li key={i}>
