@@ -1,7 +1,8 @@
 ---
 title: body
-order: 2
-contentCategories: [Sectioning root]
+order: 8
+contentCategories:
+  - Sectioning root
 ---
 # Body
 
