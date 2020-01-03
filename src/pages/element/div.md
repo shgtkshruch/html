@@ -1,6 +1,6 @@
 ---
 title: div
-order: 3
+order: 30
 contentCategories:
   - Flow content
   - Palpable content
@@ -8,7 +8,5 @@ contentCategories:
 # Div
 
 ```html
-
 <div></div>
-
 ```
