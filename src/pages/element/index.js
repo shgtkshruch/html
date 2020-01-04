@@ -7,7 +7,7 @@ import SEO from "../../components/seo"
 import Button from "../../components/button"
 import Elements from "../../components/elements"
 
-const blue = `#1d2652`;
+const blue = `#1d2652`
 
 const Container = styled.div`
   margin: 0 0 3rem;
@@ -22,7 +22,7 @@ const Heading = styled.h2`
   color: ${blue};
 
   &::before {
-    content: '-';
+    content: "-";
     padding-right: 0.2em;
   }
 `
@@ -46,7 +46,7 @@ class ElementList extends React.Component {
       posts: [],
       currentPosts: [],
       contentCategories: [],
-      selectedCategories: []
+      selectedCategories: [],
     }
 
     this.clickCategory = this.clickCategory.bind(this)
@@ -68,12 +68,15 @@ class ElementList extends React.Component {
   }
 
   isHidden(category) {
-    const currentPostsContentCategories = this.state.currentPosts.reduce((arr, post) => {
-      post.frontmatter.contentCategories.forEach(cat => {
-        if (!arr.includes(cat)) arr.push(cat)
-      })
-      return arr
-    }, [])
+    const currentPostsContentCategories = this.state.currentPosts.reduce(
+      (arr, post) => {
+        post.frontmatter.contentCategories.forEach(cat => {
+          if (!arr.includes(cat)) arr.push(cat)
+        })
+        return arr
+      },
+      []
+    )
     return !currentPostsContentCategories.includes(category)
   }
 
@@ -94,10 +97,12 @@ class ElementList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    const currentPosts = this.state.posts.filter((post) => {
-      return (post.frontmatter.contentCategories.filter(cat =>
-              this.state.selectedCategories.includes(cat)
-      ).length === this.state.selectedCategories.length)
+    const currentPosts = this.state.posts.filter(post => {
+      return (
+        post.frontmatter.contentCategories.filter(cat =>
+          this.state.selectedCategories.includes(cat)
+        ).length === this.state.selectedCategories.length
+      )
     })
 
     if (currentPosts.length === this.state.currentPosts.length) return false
@@ -131,7 +136,12 @@ class ElementList extends React.Component {
 
         <Container>
           <Heading>Elements</Heading>
-          <Elements elements={this.state.posts} currentElements={this.state.currentPosts.map(p => p.frontmatter.title)} />
+          <Elements
+            elements={this.state.posts}
+            currentElements={this.state.currentPosts.map(
+              p => p.frontmatter.title
+            )}
+          />
         </Container>
       </Layout>
     )

@@ -2,20 +2,19 @@
 
 import React from "react"
 import styled from "@emotion/styled"
-import { css, jsx } from '@emotion/core'
+import { css, jsx } from "@emotion/core"
 
 import { Link } from "gatsby"
 
-const buttonColor = `#3d456d`;
-const listMargin = `0.6`;
+const buttonColor = `#3d456d`
+const listMargin = `0.6`
 
 const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 0 ${listMargin * -1 }em;
+  margin: 0 0 ${listMargin * -1}em;
   list-style-type: none;
 `
-
 
 const Li = styled.li`
   margin-right: ${listMargin}em;
@@ -54,7 +53,10 @@ export default ({ elements, currentElements }) => {
         if (currentElements.includes(element.frontmatter.title)) {
           return (
             <Li key={i}>
-              <Link to={`/element/${element.frontmatter.title}/`} css={linkStyle}>
+              <Link
+                to={`/element/${element.frontmatter.title}/`}
+                css={linkStyle}
+              >
                 {element.frontmatter.title}
               </Link>
             </Li>
@@ -62,7 +64,10 @@ export default ({ elements, currentElements }) => {
         } else {
           return (
             <Li key={i}>
-              <Link to={`/element/${element.frontmatter.title}/`} css={unSelectedStyle}>
+              <Link
+                to={`/element/${element.frontmatter.title}/`}
+                css={unSelectedStyle}
+              >
                 {element.frontmatter.title}
               </Link>
             </Li>

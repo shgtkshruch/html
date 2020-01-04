@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-const buttonColor = `#3d456d`;
+const buttonColor = `#3d456d`
 
 const Button = styled.button`
   padding: 0.3em 1rem;
@@ -33,7 +33,7 @@ const HiddenButton = styled(Button)`
 `
 
 export default ({ children, isActive, isHidden, onClick }) => {
-  if (isHidden) return (<HiddenButton>{children}</HiddenButton>)
+  if (isHidden) return <HiddenButton>{children}</HiddenButton>
 
   return isActive ? (
     <ActiveButton onClick={onClick}>{children}</ActiveButton>
