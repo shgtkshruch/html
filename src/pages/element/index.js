@@ -21,9 +21,14 @@ const Ul = styled.ul`
 class ElementList extends React.Component {
   constructor() {
     super()
-    this.state = { selectedCategories: [] }
+    this.state = {
+      posts: [],
+      contentCategories: [],
+      selectedCategories: []
+    }
 
     this.clickCategory = this.clickCategory.bind(this)
+    this.isHidden = this.isHidden.bind(this)
   }
 
   clickCategory(category) {
@@ -44,7 +49,12 @@ class ElementList extends React.Component {
     })
   }
 
-  render() {
+  isHidden(category) {
+    // return this.state.categories.includes(category)
+    return true
+  }
+
+  componentDidMount() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
 
@@ -56,17 +66,23 @@ class ElementList extends React.Component {
       option => option.label
     )
 
+    this.setState({ posts, contentCategories })
+  }
+
+  render() {
+
     return (
       <Layout title="Element index">
         <SEO title="Element index" />
 
         <Ul>
-          {contentCategories.map((category, i) => {
+          {this.state.contentCategories.map((category, i) => {
             return (
               <li key={i}>
                 <Button
                   onClick={e => this.clickCategory(category)}
                   isActive={this.state.selectedCategories.includes(category)}
+                  isHidden={this.isHidden(category)}
                 >
                   {category}
                 </Button>
@@ -76,7 +92,7 @@ class ElementList extends React.Component {
         </Ul>
 
         <ul>
-          {posts.map(({ node: post }, i) => {
+          {this.state.posts.map(({ node: post }, i) => {
             if (
               post.frontmatter.contentCategories.filter(cat =>
                 this.state.selectedCategories.includes(cat)
