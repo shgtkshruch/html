@@ -1,9 +1,22 @@
 import React from "react"
+import styled from "@emotion/styled"
 
 import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import Button from "../../components/button"
+
+const Ul = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  list-style-type: none;
+
+  li {
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+  }
+`
 
 class ElementList extends React.Component {
   constructor() {
@@ -47,7 +60,7 @@ class ElementList extends React.Component {
       <Layout title="Element index">
         <SEO title="Element index" />
 
-        <ul>
+        <Ul>
           {contentCategories.map((category, i) => {
             return (
               <li key={i}>
@@ -60,7 +73,7 @@ class ElementList extends React.Component {
               </li>
             )
           })}
-        </ul>
+        </Ul>
 
         <ul>
           {posts.map(({ node: post }, i) => {
