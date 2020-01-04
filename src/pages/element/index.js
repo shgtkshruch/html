@@ -23,6 +23,7 @@ class ElementList extends React.Component {
     super()
     this.state = {
       posts: [],
+      currentPosts: [],
       contentCategories: [],
       selectedCategories: []
     }
@@ -42,11 +43,7 @@ class ElementList extends React.Component {
       selectedCategories = [...this.state.selectedCategories, category]
     }
 
-    this.setState(state => {
-      return {
-        selectedCategories,
-      }
-    })
+    this.setState({ selectedCategories })
   }
 
   isHidden(category) {
@@ -56,7 +53,8 @@ class ElementList extends React.Component {
 
   componentDidMount() {
     const { data } = this.props
-    const { edges: posts } = data.allMarkdownRemark
+    const { edges: _posts } = data.allMarkdownRemark
+    const posts = _posts.map(post => post.node)
 
     const _fields = data.allAdminYaml.edges[0].node.collections[0].fields
     const _contentCategoryOptions = _fields.filter(
@@ -66,11 +64,22 @@ class ElementList extends React.Component {
       option => option.label
     )
 
-    this.setState({ posts, contentCategories })
+    this.setState({ posts, contentCategories, currentPosts: posts })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const currentPosts = this.state.posts.filter((post) => {
+      return (post.frontmatter.contentCategories.filter(cat =>
+              this.state.selectedCategories.includes(cat)
+      ).length === this.state.selectedCategories.length)
+    })
+
+    if (currentPosts.length === this.state.currentPosts.length) return false
+
+    this.setState({ currentPosts })
   }
 
   render() {
-
     return (
       <Layout title="Element index">
         <SEO title="Element index" />
@@ -92,14 +101,7 @@ class ElementList extends React.Component {
         </Ul>
 
         <ul>
-          {this.state.posts.map(({ node: post }, i) => {
-            if (
-              post.frontmatter.contentCategories.filter(cat =>
-                this.state.selectedCategories.includes(cat)
-              ).length !== this.state.selectedCategories.length
-            )
-              return false
-
+          {this.state.currentPosts.length > 0 && this.state.currentPosts.map((post, i) => {
             return (
               <li key={i}>
                 <Link to={`/element/${post.frontmatter.title}/`}>
