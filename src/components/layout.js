@@ -12,10 +12,9 @@ import Header from "./header"
 import "./layout.css"
 
 const Layout = ({ title, children }) => {
-
   return (
     <>
-      <Header siteTitle={ title } />
+      <Header siteTitle={title} />
       <div
         style={{
           margin: `0 auto`,

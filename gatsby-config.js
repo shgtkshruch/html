@@ -44,6 +44,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
-    `gatsby-plugin-emotion`
+    `gatsby-plugin-emotion`,
   ],
 }
