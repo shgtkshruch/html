@@ -38,10 +38,10 @@ class ElementList extends React.Component {
   clickCategory(category) {
     let selectedCategories = []
 
-    if (this.state.selectedCategories.indexOf(category)) {
-      selectedCategories = [...this.state.selectedCategories, category]
-    } else {
+    if (this.state.selectedCategories.includes(category)) {
       selectedCategories = this.state.selectedCategories.filter(cat => cat !== category)
+    } else {
+      selectedCategories = [...this.state.selectedCategories, category]
     }
 
     this.setState(state => {
