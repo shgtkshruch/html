@@ -35,6 +35,15 @@ module.exports = {
         path: `${__dirname}/src/pages/element`,
       },
     },
-    `gatsby-transformer-remark`
+    `gatsby-transformer-yaml`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `netlifyCMSConfig`,
+        path: `${__dirname}/static/admin`,
+      },
+    },
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-emotion`,
   ],
 }

@@ -18,7 +18,7 @@ const IndexPage = () => {
   `)
 
   return (
-    <Layout title={ data.site.siteMetadata.title }>
+    <Layout title={data.site.siteMetadata.title}>
       <SEO title="Home" />
       <h1>HTML Element List</h1>
       <Link to="/element/">Element List</Link>
