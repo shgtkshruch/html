@@ -43,6 +43,7 @@ module.exports = {
         path: `${__dirname}/static/admin`,
       },
     },
-    `gatsby-transformer-remark`
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-emotion`
   ],
 }
