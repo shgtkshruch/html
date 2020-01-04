@@ -1,20 +1,41 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-import { Link, StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import Button from "../../components/button"
+import Elements from "../../components/elements"
+
+const blue = `#1d2652`;
+
+const Container = styled.div`
+  margin: 0 0 3rem;
+  padding: 1.4em;
+  border: 1px dashed ${blue};
+`
+const Heading = styled.h2`
+  font-weight: normal;
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: ${blue};
+
+  &::before {
+    content: '-';
+    padding-right: 0.2em;
+  }
+`
 
 const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
   list-style-type: none;
+  margin: 0 0 -0.6em;
 
   li {
-    margin-right: 0.5em;
-    margin-bottom: 0.5em;
+    margin-right: 0.6em;
+    margin-bottom: 0.6em;
   }
 `
 
@@ -89,40 +110,29 @@ class ElementList extends React.Component {
       <Layout title="Element index">
         <SEO title="Element index" />
 
-        <Ul>
-          {this.state.contentCategories.map((category, i) => {
-            return (
-              <li key={i}>
-                <Button
-                  onClick={e => this.clickCategory(category)}
-                  isActive={this.state.selectedCategories.includes(category)}
-                  isHidden={this.isHidden(category)}
-                >
-                  {category}
-                </Button>
-              </li>
-            )
-          })}
-        </Ul>
+        <Container>
+          <Heading>Filtering</Heading>
+          <Ul>
+            {this.state.contentCategories.map((category, i) => {
+              return (
+                <li key={i}>
+                  <Button
+                    onClick={e => this.clickCategory(category)}
+                    isActive={this.state.selectedCategories.includes(category)}
+                    isHidden={this.isHidden(category)}
+                  >
+                    {category}
+                  </Button>
+                </li>
+              )
+            })}
+          </Ul>
+        </Container>
 
-        <ul>
-          {this.state.currentPosts.length > 0 && this.state.currentPosts.map((post, i) => {
-            return (
-              <li key={i}>
-                <Link to={`/element/${post.frontmatter.title}/`}>
-                  {post.frontmatter.title}
-                </Link>
-                {post.frontmatter.contentCategories.map((category, j) => {
-                  return (
-                    <span key={j} style={{ paddingLeft: `10px` }}>
-                      [{category}]
-                    </span>
-                  )
-                })}
-              </li>
-            )
-          })}
-        </ul>
+        <Container>
+          <Heading>Elements</Heading>
+          <Elements elements={this.state.posts} currentElements={this.state.currentPosts.map(p => p.frontmatter.title)} />
+        </Container>
       </Layout>
     )
   }

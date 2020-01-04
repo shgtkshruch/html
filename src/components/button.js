@@ -1,12 +1,14 @@
 import React from "react"
 import styled from "@emotion/styled"
 
+const buttonColor = `#3d456d`;
+
 const Button = styled.button`
   padding: 0.3em 1rem;
   background-color: transparent;
   border: 1px solid currentColor;
   border-radius: 3px;
-  color: #f39723;
+  color: ${buttonColor};
   font-family: sans-serif;
   font-size: 0.8rem;
   text-align: center;
@@ -14,19 +16,19 @@ const Button = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: #f39723;
+    background-color: ${buttonColor};
     color: #fff;
   }
 `
 
 const ActiveButton = styled(Button)`
-  background-color: #f39723;
+  background-color: ${buttonColor};
   color: #fff;
 `
 
 const HiddenButton = styled(Button)`
-  background-color: #ccc;
-  color: #fff;
+  background-color: transparent;
+  opacity: 0.2;
   pointer-events: none;
 `
 
