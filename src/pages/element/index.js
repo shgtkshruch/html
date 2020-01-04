@@ -1,8 +1,31 @@
 import React from "react"
+import styled from "@emotion/styled"
 
 import { Link, StaticQuery, graphql } from "gatsby"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
+
+const Button = styled.button`
+  padding: 0.3em 1rem;
+  background-color: transparent;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: #f39723;
+  font-size: 0.9rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f39723;
+    color: #fff;
+  }
+`
+
+const ActiveButton = styled(Button)`
+  background-color: #f39723;
+  color: #fff;
+`
 
 class ElementList extends React.Component {
   constructor() {
@@ -44,7 +67,9 @@ class ElementList extends React.Component {
           {contentCategories.map((category, i) => {
             return (
               <li key={i}>
-                <button onClick={(e) => this.clickCategory(category)}>{category}</button>
+                  {this.state.selectedCategories.includes(category) ?
+                    <ActiveButton onClick={(e) => this.clickCategory(category)}>{category}</ActiveButton>
+                      : <Button onClick={(e) => this.clickCategory(category)}>{category}</Button>}
               </li>
             )
           })}
