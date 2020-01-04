@@ -77,7 +77,7 @@ class ElementList extends React.Component {
 
         <ul>
           {posts.map(({ node:post }, i) => {
-            if (post.frontmatter.contentCategories.filter(cat => this.state.selectedCategories.includes(cat)).length !== this.state.selectedCategories.length) return
+            if (post.frontmatter.contentCategories.filter(cat => this.state.selectedCategories.includes(cat)).length !== this.state.selectedCategories.length) return false
 
             return (
               <li key={i}>
