@@ -47,8 +47,13 @@ class ElementList extends React.Component {
   }
 
   isHidden(category) {
-    // return this.state.categories.includes(category)
-    return true
+    const currentPostsContentCategories = this.state.currentPosts.reduce((arr, post) => {
+      post.frontmatter.contentCategories.forEach(cat => {
+        if (!arr.includes(cat)) arr.push(cat)
+      })
+      return arr
+    }, [])
+    return !currentPostsContentCategories.includes(category)
   }
 
   componentDidMount() {

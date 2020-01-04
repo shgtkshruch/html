@@ -24,7 +24,15 @@ const ActiveButton = styled(Button)`
   color: #fff;
 `
 
-export default ({ children, isActive, onClick }) => {
+const HiddenButton = styled(Button)`
+  background-color: #ccc;
+  color: #fff;
+  pointer-events: none;
+`
+
+export default ({ children, isActive, isHidden, onClick }) => {
+  if (isHidden) return (<HiddenButton>{children}</HiddenButton>)
+
   return isActive ? (
     <ActiveButton onClick={onClick}>{children}</ActiveButton>
   ) : (
