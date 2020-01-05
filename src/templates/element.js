@@ -1,10 +1,56 @@
 import React from "react"
+import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { FaLink } from 'react-icons/fa';
 
 const mdnUrl = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+const linkColor = `#063173`;
+
+const A = styled.a`
+  color: ${linkColor};
+  text-decoration: none;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: currentColor;
+    transition: width 0.2s ease-in-out;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
+  }
+`
+const Icon = styled(FaLink)`
+  width: 0.8em;
+  height: 0.6em;
+  color: inherit;
+`
+
+const Li = styled.li`
+  position: relative;
+  padding-left: 1rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 2px;
+    width: 0.5em;
+    background-color: ${linkColor};
+  }
+`
 
 export default function({ data }) {
   const { markdownRemark } = data
@@ -27,11 +73,14 @@ export default function({ data }) {
         />
         <h2>Links</h2>
         <ul>
-          <li>
-            <a href={`${mdnUrl}/${title}`} target="_blank">
+          <Li>
+            <A href={`${mdnUrl}/${title}`} target="_blank">
               MDN web docs
-            </a>
-          </li>
+              <span style={{ marginLeft: `0.4em` }}>[</span>
+              <Icon />
+              <span>]</span>
+            </A>
+          </Li>
         </ul>
       </div>
     </Layout>

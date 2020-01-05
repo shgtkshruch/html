@@ -45,5 +45,14 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-emotion`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Noto Sans JP`,
+        ],
+        display: 'swap'
+      }
+    }
   ],
 }
