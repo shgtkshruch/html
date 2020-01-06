@@ -46,10 +46,5 @@ export default () => {
     option => option.label
   )
 
-  return (
-    <Page
-      posts={posts}
-      contentCategories={contentCategories}
-    />
-  )
+  return <Page posts={posts} contentCategories={contentCategories} />
 }

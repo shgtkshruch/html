@@ -4,11 +4,11 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { FaLink } from 'react-icons/fa';
+import { FaLink } from "react-icons/fa"
 
-const mdnUrl = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element";
-const whatwgUrl = `https://html.spec.whatwg.org/multipage/semantics.html`;
-const linkColor = `#063173`;
+const mdnUrl = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+const whatwgUrl = `https://html.spec.whatwg.org/multipage/semantics.html`
+const linkColor = `#063173`
 
 const A = styled.a`
   color: ${linkColor};
@@ -16,7 +16,7 @@ const A = styled.a`
   position: relative;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: calc(100% + 4px);
     left: 0;
@@ -43,7 +43,7 @@ const Li = styled.li`
   padding-left: 1rem;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0;
@@ -60,7 +60,7 @@ export default ({ data }) => {
 
   const links = [
     { title: `MDN web docs`, url: `${mdnUrl}/${title}` },
-    { title: `HTML Living Standard`, url: `${whatwgUrl}#the-${title}-element` }
+    { title: `HTML Living Standard`, url: `${whatwgUrl}#the-${title}-element` },
   ]
 
   return (

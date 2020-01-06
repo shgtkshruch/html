@@ -48,12 +48,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `Noto Sans JP`,
-          `Noto Serif`,
-        ],
-        display: 'swap'
-      }
-    }
+        fonts: [`Noto Sans JP`, `Noto Serif`],
+        display: "swap",
+      },
+    },
   ],
 }

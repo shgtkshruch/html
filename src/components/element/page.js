@@ -17,7 +17,7 @@ const Heading = styled.h2`
   font-weight: normal;
   font-style: italic;
   font-size: 1rem;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
   letter-spacing: 0.08em;
   color: ${blue};
 
