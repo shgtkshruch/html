@@ -6,7 +6,8 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { FaLink } from 'react-icons/fa';
 
-const mdnUrl = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
+const mdnUrl = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element";
+const whatwgUrl = `https://html.spec.whatwg.org/multipage/semantics.html`;
 const linkColor = `#063173`;
 
 const A = styled.a`
@@ -52,10 +53,15 @@ const Li = styled.li`
   }
 `
 
-export default function({ data }) {
+export default ({ data }) => {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
   const { title, contentCategories } = frontmatter
+
+  const links = [
+    { title: `MDN web docs`, url: `${mdnUrl}/${title}` },
+    { title: `HTML Living Standard`, url: `${whatwgUrl}#the-${title}-element` }
+  ]
 
   return (
     <Layout title={title}>
@@ -73,14 +79,18 @@ export default function({ data }) {
         />
         <h2>Links</h2>
         <ul>
-          <Li>
-            <A href={`${mdnUrl}/${title}`} target="_blank">
-              MDN web docs
-              <span style={{ marginLeft: `0.4em` }}>[</span>
-              <Icon />
-              <span>]</span>
-            </A>
-          </Li>
+          {links.map((link, i) => {
+            return (
+              <Li key={i}>
+                <A href={link.url} target="_blank">
+                  {link.title}
+                  <span style={{ marginLeft: `0.4em` }}>[</span>
+                  <Icon />
+                  <span>]</span>
+                </A>
+              </Li>
+            )
+          })}
         </ul>
       </div>
     </Layout>
