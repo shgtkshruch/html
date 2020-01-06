@@ -53,10 +53,6 @@ const Li = styled.li`
   }
 `
 
-const Heading = styled.h2`
-  font-family: 'Noto Serif', serif;
-`
-
 export default ({ data }) => {
   const { markdownRemark } = data
   const { frontmatter, html } = markdownRemark
@@ -71,7 +67,7 @@ export default ({ data }) => {
     <Layout title={title}>
       <SEO title={title} />
       <div className="blog-post">
-        <Heading>Content Categories</Heading>
+        <h2>Content Categories</h2>
         <ul>
           {contentCategories.map((category, i) => {
             return <li key={i}>{category}</li>
@@ -81,7 +77,7 @@ export default ({ data }) => {
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
         />
-        <Heading>Links</Heading>
+        <h2>Links</h2>
         <ul>
           {links.map((link, i) => {
             return (
