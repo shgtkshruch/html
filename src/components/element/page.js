@@ -80,14 +80,13 @@ export default class Page extends React.Component {
     return !currentPostsContentCategories.includes(category)
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidMount() {
     const { posts, contentCategories } = this.props
 
-    if (this.state.posts.length === 0) {
-      this.setState({ posts, contentCategories })
-      return
-    }
+    this.setState({ posts, contentCategories })
+  }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
     const currentPosts = this.state.posts.filter(post => {
       return (
         post.frontmatter.contentCategories.filter(cat =>
