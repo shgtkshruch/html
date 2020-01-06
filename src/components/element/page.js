@@ -5,6 +5,7 @@ import Layout from "../layout"
 import SEO from "../seo"
 import Button from "../button"
 import Elements from "../elements"
+import SearchForm from "./search-form"
 
 const blue = `#1d2652`
 
@@ -64,7 +65,23 @@ export default class Page extends React.Component {
       selectedCategories = [...this.state.selectedCategories, category]
     }
 
-    this.setState({ selectedCategories })
+    const currentPosts = this.state.posts.filter(post => {
+      return (
+        post.frontmatter.contentCategories.filter(cat =>
+          selectedCategories.includes(cat)
+        ).length === selectedCategories.length
+      )
+    })
+
+    this.setState({ selectedCategories, currentPosts })
+  }
+
+  search(value) {
+    const currentPosts = this.state.posts.filter(post => {
+      return post.frontmatter.title.indexOf(value) > -1
+    })
+
+    this.setState({ currentPosts })
   }
 
   isHidden(category) {
@@ -83,21 +100,7 @@ export default class Page extends React.Component {
   componentDidMount() {
     const { posts, contentCategories } = this.props
 
-    this.setState({ posts, contentCategories })
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const currentPosts = this.state.posts.filter(post => {
-      return (
-        post.frontmatter.contentCategories.filter(cat =>
-          this.state.selectedCategories.includes(cat)
-        ).length === this.state.selectedCategories.length
-      )
-    })
-
-    if (currentPosts.length === this.state.currentPosts.length) return false
-
-    this.setState({ currentPosts })
+    this.setState({ posts, contentCategories, currentPosts: posts })
   }
 
   render() {
@@ -122,6 +125,7 @@ export default class Page extends React.Component {
               )
             })}
           </Ul>
+          <SearchForm onInput={value => this.search(value)} />
         </Container>
 
         <Container>
