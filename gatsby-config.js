@@ -50,6 +50,7 @@ module.exports = {
       options: {
         fonts: [
           `Noto Sans JP`,
+          `Noto Serif`,
         ],
         display: 'swap'
       }
