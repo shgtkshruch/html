@@ -6,5 +6,15 @@ export default ({ onInput }) => {
     onInput(value)
   }
 
-  return <input type="text" onInput={e => input(e)} />
+  return (
+    <>
+      <label htmlFor="tagName">Tag Name</label>
+      <input
+        type="text"
+        onInput={e => input(e)}
+        placeholder="ex. html"
+        id="tagName"
+      />
+    </>
+  )
 }
