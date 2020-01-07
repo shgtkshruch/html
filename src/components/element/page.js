@@ -7,13 +7,11 @@ import Button from "../button"
 import Elements from "../elements"
 import SearchForm from "./search-form"
 
-const blue = `#1d2652`
-
 const Container = styled.div`
   position: relative;
   margin: 0 0 2rem;
   padding: 1.8em 1.4em 1.4em;
-  border: 1px dashed ${blue};
+  border: 1px dashed currentColor;
 `
 const Heading = styled.h2`
   position: absolute;
@@ -27,21 +25,12 @@ const Heading = styled.h2`
   font-size: 1rem;
   font-family: "Noto Sans JP", sans-serif;
   letter-spacing: 0.08em;
-  color: ${blue};
 `
 
-const _h = styled.h2`
-  font-weight: normal;
-  font-style: italic;
-  font-size: 1rem;
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0.08em;
-  color: ${blue};
-
-  &::before {
-    content: "-";
-    padding-right: 0.2em;
-  }
+const Hr = styled.hr`
+  margin: 1rem 0;
+  background-color: currentColor;
+  opacity: 0.5;
 `
 
 const Ul = styled.ul`
@@ -142,6 +131,7 @@ export default class Page extends React.Component {
               )
             })}
           </Ul>
+          <Hr />
           <SearchForm
             value={this.state.searchText}
             onInput={value => this.search(value)}
