@@ -53,7 +53,7 @@ export default class Page extends React.Component {
       currentPosts: [],
       contentCategories: [],
       selectedCategories: [],
-      searchText: 'bb',
+      searchText: '',
     }
 
     this.clickCategory = this.clickCategory.bind(this)
