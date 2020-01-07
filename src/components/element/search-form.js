@@ -1,7 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
 
-
 const Input = styled.input`
   padding: 0.2em 0.6em;
   color: inherit;
@@ -14,7 +13,6 @@ const Label = styled.label`
   margin-right: 1em;
   color: currentColor;
 `
-
 export default ({ value, onInput }) => {
 
   function handleChange(e) {
