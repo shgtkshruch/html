@@ -48,6 +48,7 @@ export default class Page extends React.Component {
       currentPosts: [],
       contentCategories: [],
       selectedCategories: [],
+      searchText: 'bb',
     }
 
     this.clickCategory = this.clickCategory.bind(this)
@@ -73,7 +74,7 @@ export default class Page extends React.Component {
       )
     })
 
-    this.setState({ selectedCategories, currentPosts })
+    this.setState({ selectedCategories, currentPosts, searchText: '' })
   }
 
   search(value) {
@@ -81,7 +82,7 @@ export default class Page extends React.Component {
       return post.frontmatter.title.indexOf(value) > -1
     })
 
-    this.setState({ currentPosts })
+    this.setState({ currentPosts, searchText: value })
   }
 
   isHidden(category) {
@@ -125,7 +126,10 @@ export default class Page extends React.Component {
               )
             })}
           </Ul>
-          <SearchForm onInput={value => this.search(value)} />
+          <SearchForm
+            value={this.state.searchText}
+            onInput={value => this.search(value)}
+          />
         </Container>
 
         <Container>

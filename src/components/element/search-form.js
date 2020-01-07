@@ -1,7 +1,7 @@
 import React from "react"
 
-export default ({ onInput }) => {
-  function input(e) {
+export default ({ value, onInput }) => {
+  function handleChange(e) {
     const value = e.target.value
     onInput(value)
   }
@@ -11,7 +11,8 @@ export default ({ onInput }) => {
       <label htmlFor="tagName">Tag Name</label>
       <input
         type="text"
-        onInput={e => input(e)}
+        value={value}
+        onChange={e => handleChange(e)}
         placeholder="ex. html"
         id="tagName"
       />
