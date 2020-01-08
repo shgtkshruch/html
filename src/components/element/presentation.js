@@ -45,6 +45,16 @@ const Ul = styled.ul`
   }
 `
 
+function isHidden(currentPosts, category) {
+  const currentPostsContentCategories = currentPosts.reduce((arr, post) => {
+    post.frontmatter.contentCategories.forEach(cat => {
+      if (!arr.includes(cat)) arr.push(cat)
+    })
+    return arr
+  }, [])
+  return !currentPostsContentCategories.includes(category)
+}
+
 export default ({
   posts,
   currentPosts,
@@ -54,16 +64,6 @@ export default ({
   clickCategory,
   search,
 }) => {
-  function isHidden(category) {
-    const currentPostsContentCategories = currentPosts.reduce((arr, post) => {
-      post.frontmatter.contentCategories.forEach(cat => {
-        if (!arr.includes(cat)) arr.push(cat)
-      })
-      return arr
-    }, [])
-    return !currentPostsContentCategories.includes(category)
-  }
-
   return (
     <Layout title="Element index">
       <SEO title="Element index" />
@@ -77,7 +77,7 @@ export default ({
                 <Button
                   onClick={e => clickCategory(category)}
                   isActive={selectedCategories.includes(category)}
-                  isHidden={isHidden(category)}
+                  isHidden={isHidden(currentPosts, category)}
                 >
                   {category}
                 </Button>
@@ -92,7 +92,7 @@ export default ({
       <Container>
         <Heading>Elements</Heading>
         <Elements
-          elements={posts}
+          elements={posts.map(p => ({ title: p.frontmatter.title }))}
           currentElements={currentPosts.map(p => p.frontmatter.title)}
         />
       </Container>
