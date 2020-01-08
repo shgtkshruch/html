@@ -48,29 +48,20 @@ export default ({ elements, currentElements }) => {
   return (
     <Ul>
       {elements.map((element, i) => {
-        if (currentElements.includes(element.title)) {
-          return (
-            <Li key={i}>
-              <Link
-                to={`/element/${element.title}/`}
-                css={linkStyle}
-              >
-                {element.title}
-              </Link>
-            </Li>
-          )
-        } else {
-          return (
-            <Li key={i}>
-              <Link
-                to={`/element/${element.title}/`}
-                css={unSelectedStyle}
-              >
-                {element.title}
-              </Link>
-            </Li>
-          )
-        }
+        return (
+          <Li key={i}>
+            <Link
+              to={`/element/${element.title}/`}
+              css={
+                currentElements.includes(element.title)
+                  ? linkStyle
+                  : unSelectedStyle
+              }
+            >
+              {element.title}
+            </Link>
+          </Li>
+        )
       })}
     </Ul>
   )
