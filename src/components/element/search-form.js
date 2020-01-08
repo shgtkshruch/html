@@ -14,7 +14,6 @@ const Label = styled.label`
   color: currentColor;
 `
 export default ({ value, onInput }) => {
-
   function handleChange(e) {
     const value = e.target.value
     onInput(value)

@@ -1,6 +1,6 @@
 import React from "react"
 
-import Presentation from './presentation'
+import Presentation from "./presentation"
 
 export default class Page extends React.Component {
   constructor() {
@@ -10,7 +10,7 @@ export default class Page extends React.Component {
       currentPosts: [],
       contentCategories: [],
       selectedCategories: [],
-      searchText: '',
+      searchText: "",
     }
 
     this.clickCategory = this.clickCategory.bind(this)
@@ -36,7 +36,7 @@ export default class Page extends React.Component {
       )
     })
 
-    this.setState({ selectedCategories, currentPosts, searchText: '' })
+    this.setState({ selectedCategories, currentPosts, searchText: "" })
   }
 
   search(value) {

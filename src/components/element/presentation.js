@@ -45,72 +45,57 @@ const Ul = styled.ul`
   }
 `
 
-export default class Presentation extends React.Component {
-  constructor() {
-    super()
-
-    this.isHidden = this.isHidden.bind(this)
-  }
-
-  isHidden(category) {
-    const currentPostsContentCategories = this.props.currentPosts.reduce(
-      (arr, post) => {
-        post.frontmatter.contentCategories.forEach(cat => {
-          if (!arr.includes(cat)) arr.push(cat)
-        })
-        return arr
-      },
-      []
-    )
+export default ({
+  posts,
+  currentPosts,
+  contentCategories,
+  selectedCategories,
+  searchText,
+  clickCategory,
+  search,
+}) => {
+  function isHidden(category) {
+    const currentPostsContentCategories = currentPosts.reduce((arr, post) => {
+      post.frontmatter.contentCategories.forEach(cat => {
+        if (!arr.includes(cat)) arr.push(cat)
+      })
+      return arr
+    }, [])
     return !currentPostsContentCategories.includes(category)
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (
-      prevProps.searchText === this.props.searchText &&
-      prevProps.currentPosts.length === this.props.currentPosts.length
-    ) return false
-  }
+  return (
+    <Layout title="Element index">
+      <SEO title="Element index" />
 
-  render() {
-    return (
-      <Layout title="Element index">
-        <SEO title="Element index" />
+      <Container>
+        <Heading>Filtering</Heading>
+        <Ul>
+          {contentCategories.map((category, i) => {
+            return (
+              <li key={i}>
+                <Button
+                  onClick={e => clickCategory(category)}
+                  isActive={selectedCategories.includes(category)}
+                  isHidden={isHidden(category)}
+                >
+                  {category}
+                </Button>
+              </li>
+            )
+          })}
+        </Ul>
+        <Hr />
+        <SearchForm value={searchText} onInput={value => search(value)} />
+      </Container>
 
-        <Container>
-          <Heading>Filtering</Heading>
-          <Ul>
-            {this.props.contentCategories.map((category, i) => {
-              return (
-                <li key={i}>
-                  <Button
-                    onClick={e => this.props.clickCategory(category)}
-                    isActive={this.props.selectedCategories.includes(category)}
-                    isHidden={this.isHidden(category)}
-                  >
-                    {category}
-                  </Button>
-                </li>
-              )
-            })}
-          </Ul>
-          <Hr />
-          <SearchForm
-            value={this.props.searchText}
-            onInput={value => this.props.search(value)}
-          />
-        </Container>
-
-        <Container>
-          <Heading>Elements</Heading>
-          <Elements
-            elements={this.props.posts}
-            currentElements={this.props.currentPosts.map(
-              p => p.frontmatter.title
-            )}
-          />
-        </Container>
-      </Layout>
-    )
-  }
+      <Container>
+        <Heading>Elements</Heading>
+        <Elements
+          elements={posts}
+          currentElements={currentPosts.map(p => p.frontmatter.title)}
+        />
+      </Container>
+    </Layout>
+  )
 }
